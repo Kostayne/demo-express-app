@@ -1,0 +1,32 @@
+{
+    "ts-node": {
+        // Do not forget to `npm i -D tsconfig-paths`
+        "require": ["tsconfig-paths/register"]
+    },
+
+    "exclude": ["node_modules"],
+
+    "compilerOptions": {
+        "strict": true,
+        "skipLibCheck": true,
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "esModuleInterop": true,
+        "allowJs": false,
+        "outDir": "dist",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+
+        "baseUrl": "src",
+
+        "paths": {
+            "@e/*": ["errors/*"],
+            "@m/*": ["models/*"],
+            "@s/*": ["services/*"],
+            "@t/*": ["types/*"],
+            "@r/*": ["routers/*"],
+            "@middleware/*": ["middlewares/*"]
+        }
+    },
+}
