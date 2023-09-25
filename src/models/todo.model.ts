@@ -8,12 +8,12 @@ export const TodoSchema = z.object({
     fulfilled: z.boolean(),
 });
 
+export type TodoDto = z.infer<typeof TodoSchema>;
+export type CreateTodoDto = Omit<TodoDto, 'id'>;
 export const CreateTodoSchema = TodoSchema.omit({ id: true });
 
-type TodoAttributes = z.infer<typeof TodoSchema>;
-
 @Table
-export default class Todo extends Model<TodoAttributes> {
+export default class Todo extends Model<TodoDto> {
     @AllowNull(false)
     @Column
     title!: string;

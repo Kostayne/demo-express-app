@@ -1,16 +1,16 @@
-import Todo, { CreateTodoSchema, TodoSchema } from '@m/todo.model';
+import Todo, { CreateTodoDto, CreateTodoSchema, TodoDto, TodoSchema } from '@m/todo.model';
 import { BadRequestErr } from '@e/badRequest.error';
 import { Pagination } from '@t/pagination.type';
 
 export const todosService = {
-    async create(todo: Required<Todo>) {
+    async create(todo: CreateTodoDto) {
         const t = CreateTodoSchema.safeParse(todo);
 
         if (!t.success) {
             throw new BadRequestErr(t.error.toString());
         }
 
-        return Todo.create(todo);
+        return Todo.create(todo as TodoDto);
     },
 
     async getOne(id: number) {

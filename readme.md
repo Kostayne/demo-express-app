@@ -1,5 +1,5 @@
 # Simple express app
-Just a project for demonstrational purposes
+Just a project for demonstration purposes
 
 ## Install deps
 ```
