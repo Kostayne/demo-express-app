@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+
+    image: express-demo-app-test:latest
+
+    ports:
+      - "127.0.0.1:3015:3015"
+
+    environment:
+      NODE_ENV: production
+      DEMO_EXPRESS_APP_PORT: 3015
