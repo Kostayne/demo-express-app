@@ -1,0 +1,28 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+
+      - name: Set nodejs version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Test
+        run: npm run test

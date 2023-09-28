@@ -1,0 +1,34 @@
+name: Deploying
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Test
+        run: npm run test
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          
+          script: |
+            cd proj/demo-express-app
+            git pull
+            docker compose down
+            docker compose up --build
